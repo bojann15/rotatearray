@@ -1,0 +1,17 @@
+*{
+  box-sizing: border-box;
+}
+
+body{
+  margin: 0;
+}
+
+.App{
+  max-width: 1430px;
+  min-height: 100vh;
+  padding: 0 20px;
+  margin: auto;
+ 
+}
+
+@import url("./components/elements/elements.css");
