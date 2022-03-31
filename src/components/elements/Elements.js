@@ -7,34 +7,18 @@ const Elements = () => {
     const [elements, setElements] = useState(['A', 'B', 'C', 'D', 'E']);
     const [songs, setSongs] = useState([]);
 
-    const rotate = (arr) => [...arr.slice(1), arr[0]];
-
-    const changeEL = (arr1, arr2) => {
-        let arr = [...arr1.slice(0, arr1.length - 1), arr2[0]];
-        arr2.shift();
-        return rotate(arr);
-    };
+    const rotate = (arr, elem) => [...arr.slice(1), elem || arr[0]];
 
     useEffect(() => {
-        let interval = null;
-
-        if (songs.length === 0) {
-            interval = setInterval(() => {
-                setElements(rotate(elements));
-            }, 1000);
-        } else {
-            interval = setInterval(() => {
-                setElements(changeEL(elements, songs));
-            }, 1000);
-        }
+        const interval = setInterval(() => {
+            setElements(rotate(elements, songs.shift()));
+        }, 1000);
 
         return () => {
             clearInterval(interval);
         };
 
-
     }, [songs, elements]);
-
 
     const handleSearch = async (e) => {
         e.preventDefault();
